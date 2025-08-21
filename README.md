@@ -33,3 +33,23 @@ Start Test-driven approach
 1. Write the smallest possible failing test: give input `"" assert output to be 0 ` .
 2. Write the minimum amount of code that'll make it pass.
 3. Refactor any assumptions, continue to pass this test. Do not add any code without a corresponding test.
+
+test specification:
+Basic Functionality
+1. Empty string returns 0 -"" - 0
+2. Single number returns the number itself - "5" - 5
+3. Two numbers separated by comma are summed - "1,2" - 3
+4. Multiple numbers separated by comma are summed - "1,2,3" - 6
+Handling Newlines
+1. Newline as delimite - "1\n2,3" - 6
+2. Invalid delimiter format throws exception -"1,\n" - Exception or error handling
+Custom Delimiters
+1. Custom single-character delimiter - "//;\n1;2" - 3
+2. Custom multi-character delimiter -"//[***]\n1***2***3" - 6
+3. Multiple custom delimiters -"//[*][%]\n1*2%3" - 6
+Negative Numbers
+1. Negative numbers throw exception - "1,-2" - Exception with message "Negatives not allowed: -2"
+2. Multiple negative numbers listed in exception - "1,-2,-3" - Exception with message "Negatives not allowed: -2, -3"
+Edge Cases
+1. Input with spaces - " 1 , 2 " (input)- 3(expected output)
+2. Input with trailing delimiter - "1,2," - Exception or error handling
