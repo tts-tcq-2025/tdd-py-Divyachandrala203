@@ -53,3 +53,76 @@ Negative Numbers
 Edge Cases
 1. Input with spaces - " 1 , 2 " (input)- 3(expected output)
 2. Input with trailing delimiter - "1,2," - Exception or error handling
+
+gherkin
+Feature: String Calculator
+
+  Scenario: Empty string returns zero
+    Given the input is an empty string
+    When I call the add method
+    Then the result should be 0
+
+  Scenario: Single number returns the number itself
+    Given the input is "5"
+    When I call the add method
+    Then the result should be 5
+
+  Scenario: Two numbers separated by comma are summed
+    Given the input is "1,2"
+    When I call the add method
+    Then the result should be 3
+
+  Scenario: Multiple numbers separated by comma are summed
+    Given the input is "1,2,3"
+    When I call the add method
+    Then the result should be 6
+
+  Scenario: Newline as delimiter
+    Given the input is "1\n2,3"
+    When I call the add method
+    Then the result should be 6
+
+  Scenario: Custom single-character delimiter
+    Given the input is "//;\n1;2"
+    When I call the add method
+    Then the result should be 3
+
+  Scenario: Custom multi-character delimiter
+    Given the input is "//[***]\n1***2***3"
+    When I call the add method
+    Then the result should be 6
+
+  Scenario: Multiple custom delimiters
+    Given the input is "//[*][%]\n1*2%3"
+    When I call the add method
+    Then the result should be 6
+
+  Scenario: Negative numbers throw exception
+    Given the input is "1,-2"
+    When I call the add method
+    Then an exception should be thrown with message "Negatives not allowed: -2"
+
+  Scenario: Multiple negative numbers listed in exception
+    Given the input is "1,-2,-3"
+    When I call the add method
+    Then an exception should be thrown with message "Negatives not allowed: -2, -3"
+
+  Scenario: Numbers greater than 1000 are ignored
+    Given the input is "2,1001"
+    When I call the add method
+    Then the result should be 2
+
+  Scenario: 1000 is included
+    Given the input is "2,1000"
+    When I call the add method
+    Then the result should be 1002
+
+  Scenario: Input with spaces
+    Given the input is " 1 , 2 "
+    When I call the add method
+    Then the result should be 3
+
+  Scenario: Input with trailing delimiter
+    Given the input is "1,2,"
+    When I call the add method
+    Then an exception should be thrown
