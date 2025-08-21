@@ -55,74 +55,21 @@ Edge Cases
 2. Input with trailing delimiter - "1,2," - Exception or error handling
 
 gherkin
-Feature: String Calculator
+Test Case ID	Test Name	Input	Expected Output / Behavior
+TC01	Empty string returns zero	""	0
+TC02	Single number returns itself	"5"	5
+TC03	Two numbers separated by comma	"1,2"	3
+TC04	Multiple comma-separated numbers	"1,2,3"	6
+TC05	Newline as delimiter	"1\n2,3"	6
+TC06	Invalid delimiter format	"1,\n"	Exception or error
+TC07	Custom single-character delimiter	"//;\n1;2"	3
+TC08	Custom multi-character delimiter	"//[***]\n1***2***3"	6
+TC09	Multiple custom delimiters	"//[*][%]\n1*2%3"	6
+TC10	Negative number throws exception	"1,-2"	Exception: "Negatives not allowed: -2"
+TC11	Multiple negatives in exception	"1,-2,-3"	Exception: "Negatives not allowed: -2, -3"
+TC12	Numbers >1000 are ignored	"2,1001"	2
+TC13	1000 is included	"2,1000"	1002
+TC14	Input with spaces	" 1 , 2 "	3
+TC15	Trailing delimiter throws exception	"1,2,"	Exception or error
 
-  Scenario: Empty string returns zero
-    Given the input is an empty string
-    When I call the add method
-    Then the result should be 0
-
-  Scenario: Single number returns the number itself
-    Given the input is "5"
-    When I call the add method
-    Then the result should be 5
-
-  Scenario: Two numbers separated by comma are summed
-    Given the input is "1,2"
-    When I call the add method
-    Then the result should be 3
-
-  Scenario: Multiple numbers separated by comma are summed
-    Given the input is "1,2,3"
-    When I call the add method
-    Then the result should be 6
-
-  Scenario: Newline as delimiter
-    Given the input is "1\n2,3"
-    When I call the add method
-    Then the result should be 6
-
-  Scenario: Custom single-character delimiter
-    Given the input is "//;\n1;2"
-    When I call the add method
-    Then the result should be 3
-
-  Scenario: Custom multi-character delimiter
-    Given the input is "//[***]\n1***2***3"
-    When I call the add method
-    Then the result should be 6
-
-  Scenario: Multiple custom delimiters
-    Given the input is "//[*][%]\n1*2%3"
-    When I call the add method
-    Then the result should be 6
-
-  Scenario: Negative numbers throw exception
-    Given the input is "1,-2"
-    When I call the add method
-    Then an exception should be thrown with message "Negatives not allowed: -2"
-
-  Scenario: Multiple negative numbers listed in exception
-    Given the input is "1,-2,-3"
-    When I call the add method
-    Then an exception should be thrown with message "Negatives not allowed: -2, -3"
-
-  Scenario: Numbers greater than 1000 are ignored
-    Given the input is "2,1001"
-    When I call the add method
-    Then the result should be 2
-
-  Scenario: 1000 is included
-    Given the input is "2,1000"
-    When I call the add method
-    Then the result should be 1002
-
-  Scenario: Input with spaces
-    Given the input is " 1 , 2 "
-    When I call the add method
-    Then the result should be 3
-
-  Scenario: Input with trailing delimiter
-    Given the input is "1,2,"
-    When I call the add method
-    Then an exception should be thrown
+    
