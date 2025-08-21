@@ -33,3 +33,43 @@ Start Test-driven approach
 1. Write the smallest possible failing test: give input `"" assert output to be 0 ` .
 2. Write the minimum amount of code that'll make it pass.
 3. Refactor any assumptions, continue to pass this test. Do not add any code without a corresponding test.
+
+test specification:
+Basic Functionality
+1. Empty string returns 0 -"" - 0
+2. Single number returns the number itself - "5" - 5
+3. Two numbers separated by comma are summed - "1,2" - 3
+4. Multiple numbers separated by comma are summed - "1,2,3" - 6
+Handling Newlines
+1. Newline as delimite - "1\n2,3" - 6
+2. Invalid delimiter format throws exception -"1,\n" - Exception or error handling
+Custom Delimiters
+1. Custom single-character delimiter - "//;\n1;2" - 3
+2. Custom multi-character delimiter -"//[***]\n1***2***3" - 6
+3. Multiple custom delimiters -"//[*][%]\n1*2%3" - 6
+Negative Numbers
+1. Negative numbers throw exception - "1,-2" - Exception with message "Negatives not allowed: -2"
+2. Multiple negative numbers listed in exception - "1,-2,-3" - Exception with message "Negatives not allowed: -2, -3"
+Edge Cases
+1. Input with spaces - " 1 , 2 " (input)- 3(expected output)
+2. Input with trailing delimiter - "1,2," - Exception or error handling
+
+gherkin
+Test Case ID	Test Name	Input	Expected Output / Behavior
+TC01	Empty string returns zero	""	0
+TC02	Single number returns itself	"5"	5
+TC03	Two numbers separated by comma	"1,2"	3
+TC04	Multiple comma-separated numbers	"1,2,3"	6
+TC05	Newline as delimiter	"1\n2,3"	6
+TC06	Invalid delimiter format	"1,\n"	Exception or error
+TC07	Custom single-character delimiter	"//;\n1;2"	3
+TC08	Custom multi-character delimiter	"//[***]\n1***2***3"	6
+TC09	Multiple custom delimiters	"//[*][%]\n1*2%3"	6
+TC10	Negative number throws exception	"1,-2"	Exception: "Negatives not allowed: -2"
+TC11	Multiple negatives in exception	"1,-2,-3"	Exception: "Negatives not allowed: -2, -3"
+TC12	Numbers >1000 are ignored	"2,1001"	2
+TC13	1000 is included	"2,1000"	1002
+TC14	Input with spaces	" 1 , 2 "	3
+TC15	Trailing delimiter throws exception	"1,2,"	Exception or error
+
+    
